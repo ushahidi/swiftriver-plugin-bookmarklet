@@ -30,7 +30,6 @@ modalWindow.style.width = "500px";
 modalWindow.style.height = "425px";
 modalWindow.style.borderRadius = "3px";
 modalWindow.style.margin = "90px auto 20px";
-modalWindow.style.float = "none";
 
 var i = document.createElement("iframe");
 i.src = swiftriver_site_url + "/bookmarklet?url=" + encodeURIComponent(window.location);
@@ -51,7 +50,6 @@ closeButton.style.right = 0;
 closeButton.style.width = "80px";
 closeButton.style.height = "15px";
 closeButton.style.margin = 0;
-closeButton.style.float = "none";
 closeButton.style.textAlign = "right";
 closeButton.style.backgroundColor = "rgba(0, 0, 0, 0.01)";
 modalWindow.appendChild(closeButton);

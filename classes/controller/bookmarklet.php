@@ -27,8 +27,18 @@ class Controller_Bookmarklet extends Controller_User {
 		$this->sub_content = View::factory('bookmark');
 		
 		$site_url = urlencode(URL::base(TRUE, FALSE));
-		$js_url = urlencode(URL::site("plugins/bookmarklet/media/js/bookmarklet.js", TRUE, TRUE));
-		$this->sub_content->bookmarklet = "javascript:(function()%7Bswiftriver_site_url='".$site_url."';ISRIL_H='b7f4';ISRIL_SCRIPT=document.createElement('SCRIPT');ISRIL_SCRIPT.type='text/javascript';ISRIL_SCRIPT.src='".$js_url."';document.getElementsByTagName('head')%5B0%5D.appendChild(ISRIL_SCRIPT)%7D)();";
+		if (Kohana::$environment === Kohana::PRODUCTION) {
+			$js_url = Swiftriver::get_cdn_url("plugins/bookmarklet/media/js/bookmarklet.min.js");
+		}
+		else
+		{
+			$js_url = Swiftriver::get_cdn_url("plugins/bookmarklet/media/js/bookmarklet.js");
+		}
+		if (substr($js_url, 0, 4) != 'http')
+		{
+			$js_url = URL::site($js_url, TRUE, TRUE);
+		}
+		$this->sub_content->bookmarklet = "javascript:(function()%7Bswiftriver_site_url='".$site_url."';ISRIL_H='b7f4';ISRIL_SCRIPT=document.createElement('SCRIPT');ISRIL_SCRIPT.type='text/javascript';ISRIL_SCRIPT.src='".urlencode($js_url)."';document.getElementsByTagName('head')%5B0%5D.appendChild(ISRIL_SCRIPT)%7D)();";
 		
 		
 	}
