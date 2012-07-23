@@ -33,7 +33,7 @@ modalWindow.style.margin = "90px auto 20px";
 modalWindow.style.float = "none";
 
 var i = document.createElement("iframe");
-i.src = "http://swiftweb.local/brian/bookmarklet?url=" + encodeURIComponent(window.location);
+i.src = swiftriver_site_url + "/bookmarklet?url=" + encodeURIComponent(window.location);
 i.scrolling = "no";
 i.style.width = "100%";
 i.style.height = "100%"

@@ -17,7 +17,7 @@
 return array(
 	'bookmarklet' => array(
 		'name'          => 'bookmarklet',
-		'description'   => '"Add to bucket browser" bookmarklet',
+		'description'   => '"Add to bucket" browser bookmarklet',
 		'author'        => 'Ushahidi Team',
 		'email'         => 'team@ushahidi.com',
 		'version'       => '0.1.0',

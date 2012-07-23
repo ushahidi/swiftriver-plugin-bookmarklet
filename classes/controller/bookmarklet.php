@@ -17,6 +17,24 @@ class Controller_Bookmarklet extends Controller_User {
 	
 	public function action_index()
 	{
+		if ( ! $this->owner)
+		{
+			$this->request->redirect($this->dashboard_url);
+		}
+		
+		// Set the current page
+		$this->active = 'bookmarklet';
+		$this->sub_content = View::factory('bookmark');
+		
+		$site_url = urlencode(URL::base(TRUE, FALSE));
+		$js_url = urlencode(URL::site("plugins/bookmarklet/media/js/bookmarklet.js", TRUE, TRUE));
+		$this->sub_content->bookmarklet = "javascript:(function()%7Bswiftriver_site_url='".$site_url."';ISRIL_H='b7f4';ISRIL_SCRIPT=document.createElement('SCRIPT');ISRIL_SCRIPT.type='text/javascript';ISRIL_SCRIPT.src='".$js_url."';document.getElementsByTagName('head')%5B0%5D.appendChild(ISRIL_SCRIPT)%7D)();";
+		
+		
+	}
+	
+	public function action_bookmarklet()
+	{
 		include_once Kohana::find_file('vendor', 'php-readability/Readability');
 		$this->template->header->js .= Html::script("themes/default/media/js/drops.js");
 		$this->template->content = View::factory('bookmarklet');
@@ -79,7 +97,8 @@ class Controller_Bookmarklet extends Controller_User {
 		}
 		catch (Exception $e)
 		{
-			
+			Kohana::$log->add(Log::ERROR, "Bookmarket: error extracting content. :error",
+			    array(":error" => $e->getMessage()));
 		}
 	}
 	
