@@ -19,7 +19,6 @@ Swiftriver_Event::add('swiftriver.dashboard.nav', function() {
 	
 	$nav[] = array(
 		'id' => 'bookmarklet-navigation-link',
-		'active' => 'bookmarklet',
 		'url' => '/bookmarklet',
 		'label' => __('Bookmarklet')
 	);

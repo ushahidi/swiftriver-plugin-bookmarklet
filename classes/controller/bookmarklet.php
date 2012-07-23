@@ -23,7 +23,7 @@ class Controller_Bookmarklet extends Controller_User {
 		}
 		
 		// Set the current page
-		$this->active = 'bookmarklet';
+		$this->active = 'bookmarklet-navigation-link';
 		$this->sub_content = View::factory('bookmark');
 		
 		$site_url = urlencode(URL::base(TRUE, FALSE));
