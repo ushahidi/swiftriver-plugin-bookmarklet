@@ -46,7 +46,7 @@ class Controller_Bookmarklet extends Controller_User {
 	public function action_bookmarklet()
 	{
 		include_once Kohana::find_file('vendor', 'php-readability/Readability');
-		$this->template->header->js .= Html::script("themes/default/media/js/drops.js");
+		$this->template->header->js .= HTML::script("themes/default/media/js/drops.js");
 		$this->template->content = View::factory('bookmarklet');
 		$this->template->content->drop = NULL;
 		$this->template->content->base_url = $this->request->url();
@@ -131,7 +131,7 @@ class Controller_Bookmarklet extends Controller_User {
 			
 				$droplet_array = json_decode($this->request->body(), TRUE);
 				$droplet_id = intval($this->request->param('id', 0));
-				$droplet_orm = ORM::factory('droplet', $droplet_id);
+				$droplet_orm = ORM::factory('Droplet', $droplet_id);
 				$droplet_orm->update_from_array($droplet_array, $this->user->id);
 			break;
 		}
